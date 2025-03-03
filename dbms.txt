@@ -1,0 +1,132 @@
+CREATE TABLE instructor27 (id varchar(6),name varchar(20),dept_name varchar(25),salary NUMERIC(8,2));
+
+
+ INSERT INTO instructor27 values('001','nooraah','MCA',35000);
+INSERT INTO instructor27 values('002','nithin','MCA',40000);
+INSERT INTO instructor27 values('003','noel','MCA',25000);
+
+SELECT id,name,dept_name,salary*12 as  Annual_salary  from instructor27;
+
+INSERT INTO instructor27 values('004','nima','MCA',40000);
+
+
+select * from instructor27;
+
+
+---------------------assignment_1-----------------------------------
+
+CREATE TABLE Employee27 (Empno number(8,2) primary key,Ename varchar(20) not null,job varchar(20),Mgr number check (Mgr in (1,2)),sal number(10,2) check (sal>5000));
+
+alter table Employee27 add section varchar(30);
+
+alter table Employee27 modify job varchar(25);
+
+desc Employee27;
+
+
+---------------------assignment_2-----------------------------------
+
+CREATE TABLE department27 (dept_id int primary key,dept_name varchar(20) NOT NULL,dept_location varchar(20));
+
+CREATE TABLE employee27 (emp_id INT PRIMARY KEY,emp_name VARCHAR(100) NOT NULL, emp_salary NUMBER(10, 2) CHECK (emp_salary > 20000),emp_join_date DATE CHECK (emp_join_date >= DATE '1998-01-01'),dept_id INT,FOREIGN KEY (dept_id) REFERENCES department27(dept_id));
+
+CREATE TABLE support(s_id int primary key,emp_id INT, dept_id INT,status varchar(3) CHECK(status IN('yes','no')),FOREIGN KEY (emp_id) REFERENCES employee27(emp_id),FOREIGN KEY (dept_id) REFERENCES department27(dept_id));
+
+desc department27;
+desc employee27;
+desc support;
+
+alter table employee27 add emp_email varchar(100);
+
+drop table support;
+
+alter table employee27 modify emp_salary decimal(12,2);
+
+INSERT INTO department27 (dept_id, dept_name, dept_location) VALUES (101, 'MCA', 'south block');
+INSERT INTO department27 (dept_id, dept_name, dept_location) VALUES (102, 'MBA', 'north block');
+INSERT INTO department27 (dept_id, dept_name, dept_location) VALUES (103, 'EEE', 'east block');
+INSERT INTO department27 (dept_id, dept_name, dept_location) VALUES (104, 'ECE', 'west block');
+INSERT INTO department27 (dept_id, dept_name, dept_location) VALUES (105, 'CS', 'main block');
+
+          
+
+SQL> select * from employee27;
+
+no rows selected
+
+SQL> INSERT INTO employee27 (emp_id, emp_name, emp_salary, emp_join_date, dept_id,emp_email) VALUES (1, 'John Doe', 40000, TO_DATE('15-05-2021', 'DD-MM-YYYY'), 101,'john@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO employee27 (emp_id, emp_name, emp_salary, emp_join_date, dept_id,emp_email) VALUES (2, 'alexeon', 80000, TO_DATE('17-07-2022', 'DD-MM-YYYY'), 102,'alex@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO employee27 (emp_id, emp_name, emp_salary, emp_join_date, dept_id,emp_email) VALUES (3, 'neville', 75000, TO_DATE('7-06-2022', 'DD-MM-YYYY'), 103,'neville@gmail.com');
+
+1 row created.
+
+
+SQL> select * from employee27;
+
+    EMP_ID
+----------
+EMP_NAME
+--------------------------------------------------------------------------------
+EMP_SALARY EMP_JOIN_	DEPT_ID
+---------- --------- ----------
+EMP_EMAIL
+--------------------------------------------------------------------------------
+	 1
+John Doe
+     40000 15-MAY-21	    101
+john@gmail.com
+
+
+    EMP_ID
+----------
+EMP_NAME
+--------------------------------------------------------------------------------
+EMP_SALARY EMP_JOIN_	DEPT_ID
+---------- --------- ----------
+EMP_EMAIL
+--------------------------------------------------------------------------------
+	 2
+alexeon
+     80000 17-JUL-22	    102
+alex@gmail.com
+
+
+    EMP_ID
+----------
+EMP_NAME
+--------------------------------------------------------------------------------
+EMP_SALARY EMP_JOIN_	DEPT_ID
+---------- --------- ----------
+EMP_EMAIL
+--------------------------------------------------------------------------------
+	 3
+neville
+     75000 07-JUN-22	    103
+neville@gmail.com
+
+	
+SQL> select * from department27;
+
+   DEPT_ID DEPT_NAME		DEPT_LOCATION
+---------- -------------------- --------------------
+       101 MCA			south block
+       102 MBA			north block
+       103 EEE			east block
+
+SQL> update employee27 set emp_salary = emp_salary * 1.10 where emp_id=1;
+
+1 row updated.
+
+SQL> UPDATE employee27 SET emp_salary = emp_salary * 1.10 WHERE dept_id = 101 AND emp_salary < 50000;
+
+1 row updated.
+
+SQL> 
+
+
